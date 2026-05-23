@@ -1,0 +1,80 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: test
+  name: developer-test
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"] 
+- apiGroups: [""]
+  resources: ["pods/log"]
+  verbs: ["get", "list", "watch"] 
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: project1
+  name: developer-project1
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"] 
+- apiGroups: [""]
+  resources: ["pods/log"]
+  verbs: ["get", "list", "watch"] 
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: project2
+  name: developer-project2
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"] 
+- apiGroups: [""]
+  resources: ["pods/log"]
+  verbs: ["get", "list", "watch"] 
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: project1
+  name: deploy-project1
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["create", "update", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: project2
+  name: deploy-project2
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["create", "update", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: project1
+  name: secrets-project1
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: project2
+  name: secrets-project2
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch"]
+---
+# cluster-admin уже есть из коробки в Kubernetes
